@@ -26,7 +26,7 @@ public class dessineLigne : MonoBehaviour {
         Transform line = transform.Find("line"); // élimine les lignes qui existent
         while (line != null)
         {
-            if (line) DestroyImmediate(line.gameObject);
+            DestroyImmediate(line.gameObject);
             line = transform.Find("line"); // élimine les lignes qui existent
         }
 
@@ -60,8 +60,8 @@ public class dessineLigne : MonoBehaviour {
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
         lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
-        lr.SetColors(color, color);
-        lr.SetWidth(0.1f, 0.1f);
+		lr.startColor = lr.endColor = color;
+		lr.startWidth = lr.endWidth = 0.1f;
         lr.SetPosition(0, start+new Vector3(0,0,-1));
         lr.SetPosition(1, end + new Vector3(0, 0, -1));
     }
@@ -152,8 +152,6 @@ public class dessineLigne : MonoBehaviour {
 
         head.SetPosition(0, vectors[k - 2]);
         head.SetPosition(1, vectors[k - 1]);
-
-
 
 
     }
